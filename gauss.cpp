@@ -9,7 +9,8 @@ int main(int argc, char *argv[]) {
     // Number of quadrature points 
     int n = 3;
     int k = 1;
- 
+    int iter = 0;
+
     if (argc > 1) {
         n = atoi( argv[1] );
     }
@@ -24,7 +25,7 @@ int main(int argc, char *argv[]) {
     // Quadrature weights (allocate vector)
     dvec w(n,0.0);
 
-    gauss(x,w); 
+    iter = gauss(x,w); 
 
     double sum = 0;
     for(int i=0;i<n;++i) {
@@ -37,6 +38,6 @@ int main(int argc, char *argv[]) {
     std::cout << "Q[f] = " << sum << std::endl;
     std::cout << "Exact value = 4*sin(k*pi/2)/(k*pi)" << std::endl;
     std::cout << "Error = " << std::abs(exact-sum) << std::endl;
-  
+    std::cout << "iterations: " << iter << std::endl;
     return 0;
 }

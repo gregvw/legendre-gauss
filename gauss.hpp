@@ -42,6 +42,19 @@ double chebnodes(dvec& x) {
     } 
 } 
 
+
+double initguess(dvec& x) {
+    int n = x.size();
+
+    for(int i=0;i<n;++i) {
+        x[i] = -cos(pi*double(i+.75)/double(n+0.5));    
+    } 
+
+    
+}
+
+
+
 // Compute Legendre polynomial recursion coefficients
 void rec_legendre(dvec& a, dvec& b){
     int n = a.size();
@@ -88,7 +101,8 @@ int gauss(dvec& x, dvec& w) {
     int iter = 0;
 
     // Use Chebyshev-Gauss nodes and initial guess
-    chebnodes(x);
+    initguess(x);
+//    chebnodes(x);
 
     dvec x0(x);
     dvec L(n,0.0);
